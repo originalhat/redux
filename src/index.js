@@ -1,26 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-
 import {createStore} from 'redux'
 
-/* create store */
-const store = createStore(counter);
+import registerServiceWorker from './registerServiceWorker';
 
-/* reducer – provides the next state of the application */
-function counter(state = {name: 'devin', value: 0}, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return Object.assign({...state}, {value: state.value + 1});
-    case 'DECREMENT':
-      return Object.assign({...state}, {value: state.value - 1});
-    default:
-      return state
-  }
-}
+import * as Reducers from './reducers/AppReducers';
+import * as Actions from './actions/AppActions';
+
+import App from './App';
+import './index.css';
+
+/* create store */
+const store = createStore(Reducers.counter);
 
 function render() {
   const state = store.getState();
@@ -29,8 +20,8 @@ function render() {
     <App
       value={state.value}
       name={state.name}
-      handleIncrement={() => store.dispatch({type: 'INCREMENT'})}
-      handleDecrement={() => store.dispatch({type: 'DECREMENT'})}/>,
+      handleIncrement={Actions.increment.bind(store)}
+      handleDecrement={Actions.decrement.bind(store)}/>,
     document.getElementById('root'));
 }
 
