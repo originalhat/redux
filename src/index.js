@@ -10,33 +10,27 @@ import {createStore} from 'redux'
 /* create store */
 const store = createStore(counter);
 
-/* actions */
-function handleIncrement() {
-  store.dispatch({type: 'INCREMENT'});
-}
-
-function handleDecrement() {
-  store.dispatch({type: 'DECREMENT'});
-}
-
-/* reducer */
-function counter(state = {value: 0}, action) {
+/* reducer – provides the next state of the application */
+function counter(state = {name: 'devin', value: 0}, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return {value: state.value + 1};
+      return Object.assign({...state}, {value: state.value + 1});
     case 'DECREMENT':
-      return {value: state.value - 1};
+      return Object.assign({...state}, {value: state.value - 1});
     default:
       return state
   }
 }
 
 function render() {
+  const state = store.getState();
+
   ReactDOM.render(
     <App
-      value={store.getState().value}
-      handleIncrement={handleIncrement}
-      handleDecrement={handleDecrement}/>,
+      value={state.value}
+      name={state.name}
+      handleIncrement={() => store.dispatch({type: 'INCREMENT'})}
+      handleDecrement={() => store.dispatch({type: 'DECREMENT'})}/>,
     document.getElementById('root'));
 }
 

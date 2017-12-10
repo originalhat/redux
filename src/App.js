@@ -7,6 +7,8 @@ class App extends Component {
       <div className="App">
         <h1>{this.props.value}</h1>
 
+        <p>Good morning {this.props.name}!</p>
+
         <button onClick={this.handleIncrement}>+</button>
         <button onClick={this.handleDecrement}>-</button>
       </div>
