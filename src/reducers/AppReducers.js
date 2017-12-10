@@ -1,4 +1,6 @@
-export function counter(state = {name: 'devin', value: 0}, action) {
+const INITIAL_STATE = {name: 'devin', value: 0};
+
+export default function rootReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case 'INCREMENT':
       return Object.assign({...state}, {value: state.value + 1});

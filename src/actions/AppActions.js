@@ -1,8 +1,3 @@
-export function increment() {
-  this.dispatch({type: 'INCREMENT'})
-}
-
-export function decrement() {
-  this.dispatch({type: 'DECREMENT'})
-}
+export const INCREMENT = {type: 'INCREMENT'};
+export const DECREMENT = {type: 'DECREMENT'};
 

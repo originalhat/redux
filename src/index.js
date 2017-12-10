@@ -2,31 +2,34 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux'
 
+import {INCREMENT, DECREMENT} from './actions/AppActions';
+import rootReducer from './reducers/AppReducers';
 import registerServiceWorker from './registerServiceWorker';
 
-import * as Reducers from './reducers/AppReducers';
-import * as Actions from './actions/AppActions';
-
 import App from './App';
-import './index.css';
 
-/* create store */
-const store = createStore(Reducers.counter);
+const store = createStore(rootReducer);
 
-function render() {
+function render_() {
   const state = store.getState();
 
   ReactDOM.render(
     <App
       value={state.value}
       name={state.name}
-      handleIncrement={Actions.increment.bind(store)}
-      handleDecrement={Actions.decrement.bind(store)}/>,
+      handleIncrement={() => {store.dispatch(INCREMENT)}}
+      handleDecrement={() => {store.dispatch(DECREMENT)}}/>,
     document.getElementById('root'));
 }
 
-/* subscribe to data changes */
-store.subscribe(render);
-render();
+function subscribeToStoreAndRender_() {
+  store.subscribe(render_);
+  render_();
+}
 
-registerServiceWorker();
+function startApp_() {
+  subscribeToStoreAndRender_();
+  registerServiceWorker();
+}
+
+startApp_();
