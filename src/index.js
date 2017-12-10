@@ -14,7 +14,7 @@ function render_() {
   /* get application state */
   const state = store.getState();
 
-  /* bind actions */
+  /* bind actions - a better way to avoid this boilerplate is via react-redux */
   const handleIncrement = () => {store.dispatch(incrementCounter())};
   const handleDecrement = () => {store.dispatch(decrementCounter())};
   const handleUpdateName = (name) => {store.dispatch(updateName({name}))};
