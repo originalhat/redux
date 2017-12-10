@@ -5,7 +5,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1>{this.props.counter}</h1>
+        <h1>{this.props.value}</h1>
 
         <button onClick={this.handleIncrement}>+</button>
         <button onClick={this.handleDecrement}>-</button>

@@ -20,32 +20,28 @@ function handleDecrement() {
 }
 
 /* reducer */
-function counter(state = 0, action) {
+function counter(state = {value: 0}, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1;
+      return {value: state.value + 1};
     case 'DECREMENT':
-      return state - 1;
+      return {value: state.value - 1};
     default:
       return state
   }
 }
 
-function renderApp() {
+function render() {
   ReactDOM.render(
     <App
-      counter={store.getState()}
+      value={store.getState().value}
       handleIncrement={handleIncrement}
       handleDecrement={handleDecrement}/>,
     document.getElementById('root'));
 }
 
-/* render on page load */
-renderApp();
-
 /* subscribe to data changes */
-store.subscribe(() => {
-  renderApp()
-});
+store.subscribe(render);
+render();
 
 registerServiceWorker();
