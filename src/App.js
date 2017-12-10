@@ -7,20 +7,26 @@ class App extends Component {
       <div className="App">
         <h1>{this.props.value}</h1>
 
-        <p>Good morning {this.props.name}!</p>
+        <h2>Good morning <strong>{this.props.name}</strong>!</h2>
 
-        <button onClick={this.handleIncrement}>+</button>
-        <button onClick={this.handleDecrement}>-</button>
+        <button onClick={this.handleIncrement_}>+</button>
+        <button onClick={this.handleDecrement_}>-</button>
+
+        <input type="text" defaultValue={this.props.name} onChange={this.handleUpdateName_}/>
       </div>
     );
   }
 
-  handleIncrement = () => {
+  handleIncrement_ = () => {
     this.props.handleIncrement();
   }
 
-  handleDecrement = () => {
+  handleDecrement_ = () => {
     this.props.handleDecrement();
+  }
+
+  handleUpdateName_ = (event) => {
+    this.props.handleUpdateName(event.target.value);
   }
 }
 

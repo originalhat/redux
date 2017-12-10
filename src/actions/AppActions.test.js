@@ -1,9 +1,17 @@
-import {INCREMENT, DECREMENT} from './AppActions';
+import {
+  incrementCounter,
+  decrementCounter,
+  updateName
+} from './AppActions';
 
-test('#INCREMENT', () => {
-  expect(INCREMENT).toEqual({type: 'INCREMENT'});
+test('#incrementCounter', () => {
+  expect(incrementCounter()).toEqual({type: 'INCREMENT_COUNTER'});
 });
 
-test('#DECREMENT', () => {
-  expect(DECREMENT).toEqual({type: 'DECREMENT'});
+test('#decrementCounter', () => {
+  expect(decrementCounter()).toEqual({type: 'DECREMENT_COUNTER'});
+});
+
+test("#updateName", () => {
+  expect(updateName({name: 'Bill Burr'})).toEqual({type: 'UPDATE_NAME', name: 'Bill Burr'})
 });

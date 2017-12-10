@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {createStore} from 'redux'
 
-import {INCREMENT, DECREMENT} from './actions/AppActions';
+import {incrementCounter, decrementCounter, updateName} from './actions/AppActions';
 import rootReducer from './reducers/AppReducers';
 import registerServiceWorker from './registerServiceWorker';
 
@@ -11,14 +11,23 @@ import App from './App';
 const store = createStore(rootReducer);
 
 function render_() {
+  /* get application state */
   const state = store.getState();
 
+  /* bind actions */
+  const handleIncrement = () => {store.dispatch(incrementCounter())};
+  const handleDecrement = () => {store.dispatch(decrementCounter())};
+  const handleUpdateName = (name) => {store.dispatch(updateName({name}))};
+
+  /* render root component */
   ReactDOM.render(
     <App
       value={state.value}
       name={state.name}
-      handleIncrement={() => {store.dispatch(INCREMENT)}}
-      handleDecrement={() => {store.dispatch(DECREMENT)}}/>,
+      handleIncrement={handleIncrement}
+      handleDecrement={handleDecrement}
+      handleUpdateName={handleUpdateName}
+    />,
     document.getElementById('root'));
 }
 
