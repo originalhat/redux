@@ -1,24 +1,25 @@
-import rootReducer from './AppReducers';
+import {rootReducer} from './AppReducers';
 import {incrementCounter, decrementCounter, updateName} from '../actions/AppActions';
 
 describe('AppReducers', () => {
   test('returns the initial state', () => {
-    expect(rootReducer(undefined, {})).toEqual({"name": "devin", "value": 0})
+    expect(rootReducer(undefined, {})).toEqual({"name": "", "counter": 0})
   });
 
   test('returns the next state for incrementCounter', () => {
-    expect(rootReducer({value: 0}, incrementCounter())).toEqual({value: 1});
+    expect(rootReducer({counter: 0}, incrementCounter())).toEqual({counter: 1, name: ''});
   });
 
   test('returns the next state for decrementCounter', () => {
-    expect(rootReducer({value: 0}, decrementCounter())).toEqual({value: -1});
+    expect(rootReducer({counter: 0}, decrementCounter())).toEqual({counter: -1, name: ''});
   });
 
   test('returns the next state for updateName', () => {
-    expect(rootReducer(null, updateName({
+    expect(rootReducer(undefined, updateName({
       name: 'Bill Burr'
     }))).toEqual({
-      name: 'Bill Burr'
+      name: 'Bill Burr',
+      counter: 0
     })
   });
 });
