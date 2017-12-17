@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {createStore} from 'redux'
+import {createStore, Reducer} from 'redux'
 
 import {incrementCounter, decrementCounter, updateName} from './actions/AppActions';
 import {rootReducer} from './reducers/AppReducers';
@@ -12,8 +12,12 @@ export interface AppStore {
     counter: number
 }
 
-/* TODO: better way to handle reducer types?  */
-const store = createStore<AppStore>(rootReducer as any);
+const initialState: AppStore = {
+    name: '',
+    counter: 0
+};
+
+const store = createStore<AppStore>(rootReducer as Reducer<AppStore>, initialState);
 
 function renderAppRoot() {
     const handleIncrement = () => {
