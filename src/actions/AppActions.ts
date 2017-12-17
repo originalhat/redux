@@ -10,10 +10,10 @@ export function decrementCounter() {
   }
 }
 
-export function updateName(obj: any) {
+export function updateName(name: string) {
   return {
     type: 'UPDATE_NAME',
-    name: obj.name
+    name: name
   }
 }
 
