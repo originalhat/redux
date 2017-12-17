@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-const name = (state = '', action: any) => {
+const name = (state: string = '', action: any) => {
     switch (action.type) {
         case 'UPDATE_NAME':
             return action.name;
@@ -9,7 +9,7 @@ const name = (state = '', action: any) => {
     }
 };
 
-const counter = (state = 0, action: any) => {
+const counter = (state: number = 0, action: any) => {
     switch (action.type) {
         case 'INCREMENT_COUNTER':
             return state + 1;

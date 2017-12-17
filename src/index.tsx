@@ -12,9 +12,10 @@ export interface AppStore {
     counter: number
 }
 
+/* TODO: better way to handle reducer types?  */
 const store = createStore<AppStore>(rootReducer as any);
 
-function renderApp() {
+function renderAppRoot() {
     const handleIncrement = () => {
         store.dispatch(incrementCounter())
     };
@@ -41,5 +42,5 @@ function renderApp() {
 }
 
 
-store.subscribe(renderApp);
-renderApp();
+store.subscribe(renderAppRoot);
+renderAppRoot();
